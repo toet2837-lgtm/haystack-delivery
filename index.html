@@ -607,6 +607,9 @@
                     <a href="tel:09890577789" class="btn btn-call">
                         <span>📞 ဖုန်းခေါ်ဆို၍ တိုက်ရိုက်မှာယူရန် (09890577789)</span>
                     </a>
+                    <button type="button" id="adminOrderBtn" class="btn" onclick="sendOrder('admin')" style="background:#dc2626; width:100%;">
+                        <span>👨‍💼 Admin သို့ တိုက်ရိုက် Order တင်မည်</span>
+                    </button>
                 </div>
             </form>
         </div>
@@ -814,8 +817,10 @@
             ...orderData,
             createdAt: serverTimestamp()
           });
+          return true;
         } catch (e) {
           console.error("Firebase သို့ ရေးသားရာတွင် အမှားရှိပါသည်: ", e);
+          return false;
         }
       };
 
@@ -1358,8 +1363,43 @@
             };
 
             // Firebase သို့ တိုက်ရိုက် သိမ်းဆည်းခြင်း
+            // Admin Direct Order မှာ အောင်မြင်ကြောင်း သေချာစွာစစ်ပြီးမှ success ပြမည်။
+            if (platform === 'admin') {
+                const adminBtn = document.getElementById('adminOrderBtn');
+                const originalText = adminBtn ? adminBtn.innerHTML : '';
+                if (adminBtn) {
+                    adminBtn.innerHTML = "<span>⏳ Order တင်နေပါသည်...</span>";
+                    adminBtn.disabled = true;
+                }
+
+                try {
+                    const saved = window.saveOrderToFirebase
+                        ? await window.saveOrderToFirebase(newOrder)
+                        : false;
+
+                    if (saved) {
+                        alert(`Order တင်ခြင်းအောင်မြင်ပါသည်!\nOrder ID: ${orderId}\n\nAdmin ဖက်က ပြန်လည်ဆက်သွယ်ပါမည်။\nကျေးဇူးပြု၍ စောင့်ဆိုင်းပေးပါ။`);
+                        document.getElementById('orderForm').reset();
+                        calculatePrice();
+                        updateCodAmountVisibility();
+                    } else {
+                        alert('Order တင်ရာတွင် အမှားအယွင်းရှိပါသည်။ ခဏနေပြီး ပြန်လည်ကြိုးစားပေးပါ။');
+                    }
+                } catch (error) {
+                    console.error('Admin Direct Order Error:', error);
+                    alert('Order တင်ရာတွင် အမှားအယွင်းရှိပါသည်။ ခဏနေပြီး ပြန်လည်ကြိုးစားပေးပါ။');
+                } finally {
+                    if (adminBtn) {
+                        adminBtn.innerHTML = originalText;
+                        adminBtn.disabled = false;
+                    }
+                }
+                return;
+            }
+
             if (window.saveOrderToFirebase) {
                 window.saveOrderToFirebase(newOrder);
+            alert(`Order တင်ခြင်းအောင်မြင်ပါသည်!\nAdmin ဖက်က ပြန်လည်ဆက်သွယ်ပါမည်။ ကျေးဇူးပြု၍ စောင့်ဆိုင်းပေးပါ။`);
             }
 
             if (platform === 'telegram') {
@@ -1400,7 +1440,7 @@
                     const data = await response.json();
 
                     if (data.ok) {
-                        alert(`Order အောင်မြင်စွာ တင်ပြီးပါပြီ! (Order ID: ${orderId})`);
+                        alert(`Order တင်ခြင်းအောင်မြင်ပါသည်!\nAdmin ဖက်က ပြန်လည်ဆက်သွယ်ပါမည်။ ကျေးဇူးပြု၍ စောင့်ဆိုင်းပေးပါ။\n(Order ID: ${orderId})`);
                         document.getElementById('orderForm').reset();
                         calculatePrice();
                     } else {
@@ -1430,6 +1470,7 @@
                     `💰 *ကျသင့်ငွေ:* ${price.toLocaleString()} ကျပ်`;
 
                 // Mobile & Desktop နှစ်မျိုးစလုံး ပွင့်စေရန် အဆင်ပြေဆုံး Viber URL ပုံစံ
+                alert(`Order တင်ခြင်းအောင်မြင်ပါသည်!\nAdmin ဖက်က ပြန်လည်ဆက်သွယ်ပါမည်။ ကျေးဇူးပြု၍ စောင့်ဆိုင်းပေးပါ။\n(Order ID: ${orderId})`);
                 window.location.href = `viber://chat?number=%2B959890577789&text=${viberText}`;
             }
         }
