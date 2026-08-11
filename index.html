@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="ClMjl0ulzwZ3gFzgveOmPx3e7VanedrVFizvkRK58Ms" />
+    <title>Haystack YBS Delivery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet"> 
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Padauk', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(rgba(17, 24, 39, 0.92), rgba(17, 24, 39, 0.95)), 
+                        url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #d1d5db;
+            padding: 15px;
+            position: relative;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .header-top {
+            text-align: center;
+            font-size: 13px;
+            color: #9ca3af;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+        .hotline-banner {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+            transition: transform 0.2s;
+        }
+        .hotline-banner:hover {
+            transform: scale(1.01);
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+        .hero-title {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            color: #f3f4f6;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .hero-subtitle {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 22px;
+            line-height: 1.6;
+        }
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: rgba(31, 41, 55, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        .highlight-item {
+            text-align: center;
+        }
+        .highlight-item:first-child {
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .card {
+            background: rgba(31, 41, 55, 0.85);
+            backdrop-filter: blur(12px);
+            color: #e5e7eb;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 10px;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tag-badge {
+            background: rgba(255, 255, 255, 0.08);
+            color: #9ca3af;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+        }
+        
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .rate-table th {
+            background: rgba(17, 24, 39, 0.6);
+            color: #9ca3af;
+            padding: 10px;
+            text-align: left;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .rate-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 14px;
+            color: #d1d5db;
+        }
+        .rate-table tr:last-child td {
+            border-bottom: none;
+        }
+        .text-right {
+            text-align: right;
+            font-weight: bold;
+            color: #60a5fa;
+        }
+
+        .policy-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .policy-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .policy-icon {
+            background: rgba(234, 179, 8, 0.15);
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .policy-text h5 {
+            font-size: 14px;
+            color: #f3f4f6;
+            margin-bottom: 3px;
+        }
+        .policy-text p {
+            font-size: 12px;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            font-weight: bold;
+            color: #60a5fa;
+            margin: 15px 0 10px 0;
+            padding-bottom: 4px;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            color: #d1d5db;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 14px;
+            background: rgba(17, 24, 39, 0.7);
+            color: #ffffff;
+            transition: all 0.3s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        .form-control::placeholder {
+            color: #6b7280;
+        }
+        .price-summary {
+            background: rgba(30, 58, 138, 0.25);
+            border: 1px dashed rgba(59, 130, 246, 0.4);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .price-summary-text {
+            font-size: 13px;
+            color: #93c5fd;
+            margin-bottom: 4px;
+        }
+        .price-summary-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #60a5fa;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 12px;
+            padding: 13px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.1s;
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        .btn-viber {
+            background: #7c3aed;
+        }
+        .btn-telegram {
+            background: #0284c7;
+        }
+        .btn-call {
+            background: #059669;
+            width: 100%;
+        }
+
+        .history-item {
+            background: rgba(17, 24, 39, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .history-id { color: #60a5fa; font-weight: bold; font-size: 13px; }
+        .history-date { font-size: 11px; color: #9ca3af; }
+        .status-pill {
+            display: inline-block;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+        .status-pending { background: rgba(234, 179, 8, 0.2); color: #fde047; }
+        .status-transit { background: rgba(59, 130, 246, 0.2); color: #93c5fd; }
+        .status-completed { background: rgba(34, 197, 94, 0.2); color: #86efac; }
+        .status-cancelled { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+
+        .btn-group { display: flex; gap: 6px; }
+        .btn-detail {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            color: #93c5fd;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        .modal-content {
+            background: #1f2937;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 390px;
+            max-height: 82vh;
+            overflow-y: auto;
+            padding: 14px;
+            color: #e5e7eb;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute; right: 15px; top: 15px;
+            font-size: 18px; color: #9ca3af; cursor: pointer;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 12px;
+            line-height: 1.35;
+        }
+        .detail-label { color: #9ca3af; flex: 0 0 43%; }
+        .detail-value { color: #f3f4f6; font-weight: bold; text-align: right; max-width: 57%; overflow-wrap:anywhere; }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+    
+    /* ================= ORDER TRACKING ================= */
+    .track-card {
+      background: rgba(15,23,42,.92);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 14px;
+    }
+    .track-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .track-id {
+      color: var(--blue);
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .track-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 20px;
+      padding: 4px 9px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+    .track-status.pending { color: var(--yellow); background: rgba(250,204,21,.1); }
+    .track-status.transfer { color: var(--blue); background: rgba(56,189,248,.1); }
+    .track-status.completed { color: var(--green); background: rgba(74,222,128,.1); }
+    .track-status.cancelled { color: var(--red); background: rgba(248,113,113,.1); }
+    .track-timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      margin: 15px 0 12px;
+    }
+    .track-step {
+      text-align: center;
+      color: #64748b;
+      font-size: 10px;
+    }
+    .track-step::before {
+      content: "";
+      display: block;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      margin: 0 auto 6px;
+      background: #1e293b;
+      border: 2px solid #334155;
+    }
+    .track-step.done { color: var(--green); font-weight: 700; }
+    .track-step.active { color: var(--blue); font-weight: 700; }
+    .track-step.done::before { background: rgba(74,222,128,.18); border-color: var(--green); }
+    .track-step.active::before { background: rgba(56,189,248,.18); border-color: var(--blue); }
+    .track-error {
+      color: var(--red);
+      font-size: 12px;
+      text-align: center;
+      padding: 10px;
+      border: 1px dashed rgba(248,113,113,.3);
+      border-radius: 10px;
+      background: rgba(248,113,113,.05);
+    }
+    .track-loading {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      padding: 12px;
+    }
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-top">
+            ✨ ရန်ကုန်မြို့တွင်း အယုံကြည်ရဆုံး YBS အမြန်ပို့ဆောင်ရေး
+        </div>
+
+        <a href="tel:09890577789" style="text-decoration: none;">
+            <div class="hotline-banner">
+                📞 ဆက်သွယ်ရန် ဖုန်း - 09890577789 (နှိပ်၍ ဖုန်းခေါ်ရန်)
+            </div>
+        </a>
+
+        <div style="text-align: center;">
+            <div class="badge">🔵 Professional Logistics</div>
+        </div>
+
+        <h1 class="hero-title">Haystack YBS<br>Delivery</h1>
+        <p class="hero-subtitle">
+            YBS ကွန်ရက်ကို အခြေခံ၍ မြန်ဆန်၊ လုံခြုံ၊<br>တိကျသော နေ့ချင်းရောက် ပို့ဆောင်ရေး
+        </p>
+
+        <div class="highlight-grid">
+            <div class="highlight-item">
+                <div style="font-weight: bold; font-size: 16px; color: #f3f4f6;">1kg / 1way</div>
+                <div id="starting-price" style="font-size: 11px; color: #9ca3af;">5,000 ကျပ်မှ စတင်သည်</div>
+            </div>
+            <div class="highlight-item">
+                <div style="font-weight: bold; font-size: 16px; color: #f3f4f6;">၂ ရက်အတွင်း</div>
+                <div style="font-size: 11px; color: #9ca3af;">အချိန်မီ အာမခံချက်</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🏷️ ပို့ဆောင်ခ နှုန်းထားများ</div>
+                <div class="tag-badge">RATES</div>
+            </div>
+            <table class="rate-table">
+                <thead>
+                    <tr>
+                        <th>အလေးချိန်</th>
+                        <th class="text-right">ကျသင့်ငွေ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 kg (1 way)</td>
+                        <td class="text-right" id="rate1">5,000 ကျပ်</td>
+                    </tr>
+                    <tr>
+                        <td>2 kg</td>
+                        <td class="text-right" id="rate2">6,000 ကျပ်</td>
+                    </tr>
+                    <tr>
+                        <td>3 kg</td>
+                        <td class="text-right" id="rate3">7,000 ကျပ်</td>
+                    </tr>
+                    <tr>
+                        <td>4 kg</td>
+                        <td class="text-right" id="rate4">8,000 ကျပ်</td>
+                    </tr>
+                    <tr>
+                        <td>1kg ထပ်တိုးတိုင်း</td>
+                        <td class="text-right" id="rateExtra">+1,000 ကျပ်</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🛡️ အချိန်မီ ပို့ဆောင်ရေး အာမခံချက်</div>
+                <div class="tag-badge" style="color: #fde047;">POLICY</div>
+            </div>
+            <p style="font-size: 12px; color: #9ca3af;">ဖောက်သည်များ စိတ်ချယုံကြည်စွာ အသုံးပြုနိုင်ရန် ကျွန်ုပ်တို့၏ တာဝန်ယူမှု စံနှုန်းများ -</p>
+            
+            <div class="policy-list" id="customerTermsContainer">
+                <div class="policy-item">
+                    <div class="policy-icon">📜</div>
+                    <div class="policy-text">
+                        <h5>စည်းကမ်းချက်များ</h5>
+                        <p>Admin မှ စည်းကမ်းချက်များကို ဆွဲယူနေပါသည်...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📦 အမြန်မှာယူရန် (Order Now)</div>
+                <div class="tag-badge" style="color: #93c5fd;">BOOKING</div>
+            </div>
+
+            <form id="orderForm">
+                <div class="section-subtitle">📤 ပေးပို့သူ အချက်အလက် (Pickup)</div>
+                <div class="form-group">
+                    <label>ပေးပို့သူ အမည်</label>
+                    <input type="text" id="senderName" class="form-control" placeholder="ဥပမာ - ဦးအေးမင်း" required>
+                </div>
+                <div class="form-group">
+                    <label>ပေးပို့သူ ဖုန်းနံပါတ်</label>
+                    <input type="tel" id="senderPhone" class="form-control" placeholder="ဥပမာ - 09123456789" inputmode="numeric" maxlength="11" required>
+                </div>
+                <div class="form-group">
+                    <label>ပစ္စည်းယူရမည့် လိပ်စာ (Pickup Address)</label>
+                    <input type="text" id="pickup" class="form-control" placeholder="မြို့နယ်၊ လမ်း၊ အိမ်နံပါတ်" required>
+                </div>
+
+                <div class="section-subtitle">📥 လက်ခံသူ အချက်အလက် (Delivery)</div>
+                <div class="form-group">
+                    <label>လက်ခံသူ အမည်</label>
+                    <input type="text" id="receiverName" class="form-control" placeholder="ဥပမာ - ဒေါ်မြမြ" required>
+                </div>
+                <div class="form-group">
+                    <label>လက်ခံသူ ဖုန်းနံပါတ်</label>
+                    <input type="tel" id="receiverPhone" class="form-control" placeholder="ဥပမာ - 09987654321" inputmode="numeric" maxlength="11" required>
+                </div>
+                <div class="form-group">
+                    <label>ပစ္စည်းပို့ရမည့် လိပ်စာ (Delivery Address)</label>
+                    <input type="text" id="dropoff" class="form-control" placeholder="မြို့နယ်၊ လမ်း၊ အိမ်နံပါတ်" required>
+                </div>
+
+                <div class="section-subtitle">⚖️ ပစ္စည်း အသေးစိတ် အချက်အလက်</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="form-group">
+                        <label>အလေးချိန် (kg)</label>
+                        <input type="number" id="weight" class="form-control" value="1" min="1" oninput="calculatePrice()" onkeyup="calculatePrice()" onchange="calculatePrice()" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ပစ္စည်း အမျိုးအစား</label>
+                        <select id="itemType" class="form-control">
+                            <option value="အထွေထွေ">အထွေထွေ</option>
+                            <option value="အဝတ်အထည်">အဝတ်အထည်</option>
+                            <option value="အစားအသောက်">အစားအသောက်</option>
+                            <option value="လျှပ်စစ်ပစ္စည်း">လျှပ်စစ်ပစ္စည်း</option>
+                            <option value="ကွဲရှလွယ်ပစ္စည်း">ကွဲရှလွယ်ပစ္စည်း</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>ငွေချေစနစ် (Payment Method)</label>
+                    <select id="paymentType" class="form-control">
+                        <option value="COD (ပစ္စည်းရောက်မှ ငွေချေ)">COD (ပစ္စည်းရောက်မှ ငွေချေ)</option>
+                        <option value="Prepaid (ကြိုတင်ငွေချေ)">Prepaid (ကြိုတင်ငွေချေ)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="codAmountGroup" style="display:block;">
+                    <label>💰 COD ပစ္စည်းတန်ဖိုး (ကျပ်)</label>
+                    <input type="number" id="codAmount" class="form-control" placeholder="ဥပမာ - 50000" min="0" step="1" inputmode="numeric">
+                    <small style="color:#9ca3af;font-size:11px;">COD ဖြစ်မှ ပစ္စည်းတန်ဖိုးကို ထည့်ပါ။ Admin မှလည်း ပြင်ဆင်နိုင်ပါတယ်။</small>
+                </div>
+
+                <div class="form-group">
+                    <label>မှတ်ချက် (Optional)</label>
+                    <input type="text" id="note" class="form-control" placeholder="ဥပမာ - ဂရုစိုက်ကိုင်တွယ်ပါ">
+                </div>
+
+                <div class="price-summary">
+                    <div class="price-summary-text">ခန့်မှန်းကျသင့်ငွေ စုစုပေါင်း</div>
+                    <div class="price-summary-amount" id="total-price">5,000 ကျပ်</div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <button type="button" class="btn btn-viber" onclick="sendOrder('viber')">
+                            <span>💬 Viber ဖြင့်မှာမည်</span>
+                        </button>
+                        <button type="button" id="tgBtn" class="btn btn-telegram" onclick="sendOrder('telegram')">
+                            <span>✈️ Telegram ဖြင့်မှာမည်</span>
+                        </button>
+                    </div>
+                    <a href="tel:09890577789" class="btn btn-call">
+                        <span>📞 ဖုန်းခေါ်ဆို၍ တိုက်ရိုက်မှာယူရန် (09890577789)</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- ORDER TRACKING -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🔎 Order Tracking</div>
+                <div class="tag-badge" style="color:#60a5fa;">TRACK</div>
+            </div>
+            <div class="form-group" style="margin-bottom:10px;">
+                <label>Order ID ဖြင့် ရှာရန်</label>
+                <div style="display:flex; gap:8px;">
+                    <input type="text" id="trackOrderInput" class="form-control"
+                           placeholder="ဥပမာ - HS-972243" autocomplete="off">
+                    <button type="button" class="btn btn-telegram"
+                            onclick="trackOrder()"
+                            style="width:auto; min-width:82px; padding:10px 14px;">
+                        ရှာမည်
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom:10px;">
+                <label>📱 ဖုန်းနံပါတ်ဖြင့် ရှာရန်</label>
+                <div style="display:flex; gap:8px;">
+                    <input type="tel" id="trackPhoneInput" class="form-control"
+                           placeholder="ဥပမာ - 09123456789"
+                           inputmode="numeric" autocomplete="off" maxlength="11">
+                    <button type="button" class="btn btn-viber"
+                            onclick="trackByPhone()"
+                            style="width:auto; min-width:110px; padding:10px 14px;">
+                        ဖုန်းဖြင့်ရှာမည်
+                    </button>
+                </div>
+            </div>
+
+            <div id="trackResult" style="display:none;"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📜 မှာယူခဲ့သော မှတ်တမ်းများ (History)</div>
+                <div class="tag-badge" style="color: #34d399;">LIVE REALTIME</div>
+            </div>
+            <div id="historyList">
+                <p style="text-align: center; color: #9ca3af; font-size: 13px; padding: 10px;">မှာယူထားသော မှတ်တမ်းများ ဆွဲယူနေပါသည်...</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2026 Haystack YBS Delivery Service. All Rights Reserved.
+        </div>
+    </div>
+
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 style="color: #60a5fa; font-size: 14px; margin: 0 0 9px; text-align: center;">📋 မှာယူမှု အသေးစိတ်</h3>
+            <div id="modalDetails"></div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK Connection -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy, limit, doc, getDoc, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDnfB7MV6bb-BqE0TRHXE-qbrHYnFQ4D0I",
+        authDomain: "heystack-ybs-deli.firebaseapp.com",
+        projectId: "heystack-ybs-deli",
+        storageBucket: "heystack-ybs-deli.firebasestorage.app",
+        messagingSenderId: "961467761736",
+        appId: "1:961467761736:web:4c967d6828d563d68e047d",
+        measurementId: "G-YZHWL84HWX"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // ================= LIVE TERMS FROM ADMIN =================
+      const customerTermsRef = doc(db, "settings", "terms");
+      onSnapshot(customerTermsRef, (snap) => {
+          const container = document.getElementById("customerTermsContainer");
+          if (!container) return;
+
+          const rules = snap.exists() && Array.isArray(snap.data()?.rules)
+              ? snap.data().rules
+              : [];
+
+          if (!rules.length) {
+              container.innerHTML = `
+                <div class="policy-item">
+                  <div class="policy-icon">📜</div>
+                  <div class="policy-text">
+                    <h5>စည်းကမ်းချက်များ</h5>
+                    <p>စည်းကမ်းချက်များ မရှိသေးပါ။</p>
+                  </div>
+                </div>`;
+              return;
+          }
+
+          container.innerHTML = rules.map((rule, index) => `
+            <div class="policy-item">
+              <div class="policy-icon">${index === 0 ? "📜" : "📌"}</div>
+              <div class="policy-text">
+                <h5>စည်းကမ်းချက် ${index + 1}</h5>
+                <p>${escapeTrackText(rule)}</p>
+              </div>
+            </div>
+          `).join("");
+      }, (error) => console.error("Terms realtime error:", error));
+
+
+
+      // ================= CUSTOMER ID =================
+      // Each browser gets its own private customer ID.
+      // Orders are saved with this ID and History only shows matching orders.
+      const CUSTOMER_ID_KEY = "haystack_customer_id";
+
+      function getCustomerId() {
+          let customerId = localStorage.getItem(CUSTOMER_ID_KEY);
+          if (!customerId) {
+              customerId = (crypto.randomUUID
+                  ? crypto.randomUUID()
+                  : "cust-" + Date.now() + "-" + Math.random().toString(36).slice(2));
+              localStorage.setItem(CUSTOMER_ID_KEY, customerId);
+          }
+          return customerId;
+      }
+
+      const customerId = getCustomerId();
+      window.haystackCustomerId = customerId;
+
+      // ================= DYNAMIC PRICING FROM ADMIN =================
+      // Admin saves pricing at: settings/pricing
+      // baseFee = 1kg price, weightRate = each extra kg price.
+      window.deliveryPricing = {
+          baseFee: 5000,
+          weightRate: 1000,
+          expressFee: 1000
+      };
+
+      function applyCustomerPricing(data) {
+          const baseFee = Number(data?.baseFee);
+          const weightRate = Number(data?.weightRate);
+          const expressFee = Number(data?.expressFee);
+
+          if (Number.isFinite(baseFee) && baseFee >= 0) {
+              window.deliveryPricing.baseFee = baseFee;
+          }
+          if (Number.isFinite(weightRate) && weightRate >= 0) {
+              window.deliveryPricing.weightRate = weightRate;
+          }
+          if (Number.isFinite(expressFee) && expressFee >= 0) {
+              window.deliveryPricing.expressFee = expressFee;
+          }
+
+          // Update visible prices immediately when Admin changes them.
+          const base = window.deliveryPricing.baseFee;
+          const rate = window.deliveryPricing.weightRate;
+
+          const setText = (id, value) => {
+              const el = document.getElementById(id);
+              if (el) el.innerText = value;
+          };
+
+          setText('starting-price', base.toLocaleString() + ' ကျပ်မှ စတင်သည်');
+          setText('rate1', base.toLocaleString() + ' ကျပ်');
+          setText('rate2', (base + rate).toLocaleString() + ' ကျပ်');
+          setText('rate3', (base + rate * 2).toLocaleString() + ' ကျပ်');
+          setText('rate4', (base + rate * 3).toLocaleString() + ' ကျပ်');
+          setText('rateExtra', '+' + rate.toLocaleString() + ' ကျပ်');
+
+          if (typeof window.calculatePrice === 'function') {
+              window.calculatePrice();
+          }
+      }
+
+      // Realtime: Customer page changes automatically after Admin saves pricing.
+      const pricingRef = doc(db, "settings", "pricing");
+      onSnapshot(pricingRef, (snapshot) => {
+          if (snapshot.exists()) {
+              applyCustomerPricing(snapshot.data());
+          }
+      }, (error) => {
+          console.error("Customer pricing listener error:", error);
+      });
+
+      // Initial load in case the document already exists.
+      getDoc(pricingRef).then((snapshot) => {
+          if (snapshot.exists()) {
+              applyCustomerPricing(snapshot.data());
+          }
+      }).catch((error) => {
+          console.error("Customer pricing load error:", error);
+      });
+
+      // Save Order to Firebase
+      window.saveOrderToFirebase = async function(orderData) {
+        try {
+          await addDoc(collection(db, "orders"), {
+            ...orderData,
+            createdAt: serverTimestamp()
+          });
+        } catch (e) {
+          console.error("Firebase သို့ ရေးသားရာတွင် အမှားရှိပါသည်: ", e);
+        }
+      };
+
+
+      function normalizeStatus(rawStatus) {
+          const raw = String(rawStatus || 'Pending').trim().toLowerCase();
+          if (raw === 'completed' || raw === 'complete' || raw === 'done') return 'Completed';
+          if (raw === 'cancelled' || raw === 'canceled' || raw === 'cancel') return 'Cancelled';
+          if (raw === 'transfer' || raw === 'in transit' || raw === 'transit' || raw === 'transferred') return 'Transfer';
+          return 'Pending';
+      }
+
+      window.normalizeStatus = normalizeStatus;
+
+      // Realtime Order History Listener
+      // IMPORTANT: only orders belonging to this browser/customer are shown.
+      let ordersCache = [];
+      // Filter by customerId first. Sorting is done below in JavaScript,
+      // so Firestore does not need a composite index.
+      const q = query(
+          collection(db, "orders"),
+          where("customerId", "==", customerId),
+          limit(100)
+      );
+
+      onSnapshot(q, (snapshot) => {
+        const historyList = document.getElementById('historyList');
+        ordersCache = [];
+
+        if (snapshot.empty) {
+            historyList.innerHTML = '<p style="text-align: center; color: #9ca3af; font-size: 13px; padding: 10px;">မှာယူထားသော မှတ်တမ်းမရှိသေးပါ။</p>';
+            return;
+        }
+
+        ordersCache = snapshot.docs.map(doc => doc.data());
+
+        // Newest first, then keep the latest 20.
+        ordersCache.sort((a, b) => {
+            const aTime = a.createdAt?.seconds ? Number(a.createdAt.seconds) : 0;
+            const bTime = b.createdAt?.seconds ? Number(b.createdAt.seconds) : 0;
+            return bTime - aTime;
+        });
+        ordersCache = ordersCache.slice(0, 20);
+
+        historyList.innerHTML = ordersCache.map((item, index) => {
+            const status = normalizeStatus(item.status);
+            let statusBadge = `<span class="status-pill status-pending">⏳ Pending</span>`;
+            if (status === 'Transfer') statusBadge = `<span class="status-pill status-transit">🚚 Transfer</span>`;
+            if (status === 'Completed') statusBadge = `<span class="status-pill status-completed">✅ Completed</span>`;
+            if (status === 'Cancelled') statusBadge = `<span class="status-pill status-cancelled">❌ Cancelled</span>`;
+
+            return `
+                <div class="history-item">
+                    <div>
+                        <div class="history-id">${item.id || 'HS-ORDER'} ${statusBadge}</div>
+                        <div class="history-date">${item.date || ''} | ${item.price || ''}</div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-detail" onclick="window.showDetail && window.showDetail(${index})">အသေးစိတ်</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+      });
+
+      window.getOrdersCache = function() {
+        return ordersCache;
+      };
+
+      // ================= ORDER TRACKING =================
+      // Existing orders collection is used. Existing save/TG/Viber/phone logic is untouched.
+      let trackedOrderUnsubscribe = null;
+
+      function escapeTrackText(value) {
+          const div = document.createElement('div');
+          div.textContent = value == null ? '' : String(value);
+          return div.innerHTML;
+      }
+
+      function renderTrackedOrder(item) {
+          const result = document.getElementById('trackResult');
+          if (!result) return;
+
+          const status = normalizeStatus(item.status);
+          const statusMap = {
+              Pending:   { cls: 'pending', icon: '⏳', label: 'Pending' },
+              Transfer:  { cls: 'transfer', icon: '🚚', label: 'Transfer' },
+              Completed: { cls: 'completed', icon: '✅', label: 'Completed' },
+              Cancelled: { cls: 'cancelled', icon: '❌', label: 'Cancelled' }
+          };
+          const s = statusMap[status];
+
+          let pendingClass = 'active';
+          let transferClass = '';
+          let completedClass = '';
+
+          if (status === 'Transfer') {
+              pendingClass = 'done';
+              transferClass = 'active';
+          } else if (status === 'Completed') {
+              pendingClass = 'done';
+              transferClass = 'done';
+              completedClass = 'done';
+          }
+
+          const cancelReason = item.cancelReason || item.cancellationReason || item.reason || '';
+
+          result.style.display = 'block';
+          result.innerHTML = `
+              <div class="track-card">
+                  <div class="track-head">
+                      <div>
+                          <div style="color:#94a3b8;font-size:10px;">ORDER ID</div>
+                          <div class="track-id">${escapeTrackText(item.id || 'N/A')}</div>
+                      </div>
+                      <span class="track-status ${s.cls}">${s.icon} ${s.label}</span>
+                  </div>
+
+                  <div class="track-timeline">
+                      <div class="track-step ${pendingClass}">Order Received</div>
+                      <div class="track-step ${transferClass}">Transfer</div>
+                      <div class="track-step ${completedClass}">Completed</div>
+                  </div>
+
+                  ${status === 'Cancelled' ? `
+                      <div class="info-row" style="margin-top:8px;">
+                          <span class="label">Cancel အကြောင်းပြချက်</span>
+                          <span class="value">${escapeTrackText(cancelReason || 'အကြောင်းပြချက် မဖော်ပြထားပါ')}</span>
+                      </div>
+                  ` : ''}
+
+                  <div class="track-meta">
+                      <div class="info-row">
+                          <span class="label">မှာယူသည့် ရက်စွဲ</span>
+                          <span class="value">${escapeTrackText(item.date || '-')}</span>
+                      </div>
+                      <div class="info-row">
+                          <span class="label">ကျသင့်ငွေ</span>
+                          <span class="value" style="color:#34d399;">${escapeTrackText(item.price || '0 ကျပ်')}</span>
+                      </div>
+                  </div>
+
+                  <button type="button" class="btn btn-telegram"
+                          onclick="showTrackedDetail()"
+                          style="margin-top:10px;">
+                      📋 အသေးစိတ်ကြည့်မည်
+                  </button>
+              </div>
+          `;
+
+          window.trackedOrder = item;
+      }
+
+      window.trackOrder = function() {
+          const input = document.getElementById('trackOrderInput');
+          const result = document.getElementById('trackResult');
+          const orderId = (input?.value || '').trim().toUpperCase();
+
+          if (!orderId) {
+              if (result) {
+                  result.style.display = 'block';
+                  result.innerHTML = '<div class="track-error">⚠️ Order ID ရိုက်ထည့်ပါ။ ဥပမာ - HS-972243</div>';
+              }
+              return;
+          }
+
+          if (result) {
+              result.style.display = 'block';
+              result.innerHTML = '<div class="track-loading">⏳ Order ရှာနေပါသည်...</div>';
+          }
+
+          if (typeof trackedOrderUnsubscribe === 'function') {
+              trackedOrderUnsubscribe();
+              trackedOrderUnsubscribe = null;
+          }
+
+          const trackQuery = query(
+              collection(db, "orders"),
+              where("id", "==", orderId),
+              limit(1)
+          );
+
+          let found = false;
+
+          trackedOrderUnsubscribe = onSnapshot(trackQuery, (snapshot) => {
+              if (snapshot.empty) {
+                  if (!found && result) {
+                      result.style.display = 'block';
+                      result.innerHTML = '<div class="track-error">❌ ဒီ Order ID ကို မတွေ့ပါ။ Order ID မှန်/မမှန် ပြန်စစ်ပါ။</div>';
+                  }
+                  return;
+              }
+
+              found = true;
+              renderTrackedOrder(snapshot.docs[0].data());
+          }, (error) => {
+              console.error("Order tracking listener error:", error);
+              if (result) {
+                  result.style.display = 'block';
+                  result.innerHTML = '<div class="track-error">⚠️ Order ကို ရှာရာတွင် ချိတ်ဆက်မှု အမှားရှိနေပါသည်။</div>';
+              }
+          });
+      };
+
+      // Search customer's orders by sender phone number.
+      // This works even after browser data/cache is cleared because
+      // the phone number is used to query Firebase directly.
+      window.trackByPhone = function() {
+          const input = document.getElementById('trackPhoneInput');
+          const result = document.getElementById('trackResult');
+          const phone = (input?.value || '').replace(/[\s-]/g, '').trim();
+
+          if (!phone) {
+              if (result) {
+                  result.style.display = 'block';
+                  result.innerHTML = '<div class="track-error">⚠️ ဖုန်းနံပါတ် ရိုက်ထည့်ပါ။</div>';
+              }
+              return;
+          }
+
+          const phoneRegex = /^(09|\+?959)[0-9]{7,9}$/;
+          if (!phoneRegex.test(phone)) {
+              if (result) {
+                  result.style.display = 'block';
+                  result.innerHTML = '<div class="track-error">⚠️ ဖုန်းနံပါတ် မမှန်ပါ။ ဥပမာ - 09123456789</div>';
+              }
+              return;
+          }
+
+          if (typeof trackedOrderUnsubscribe === 'function') {
+              trackedOrderUnsubscribe();
+              trackedOrderUnsubscribe = null;
+          }
+
+          if (result) {
+              result.style.display = 'block';
+              result.innerHTML = '<div class="track-loading">⏳ ဒီဖုန်းနံပါတ်နဲ့ Order များ ရှာနေပါသည်...</div>';
+          }
+
+          const phoneQuery = query(
+              collection(db, "orders"),
+              where("senderPhone", "==", phone),
+              limit(20)
+          );
+
+          trackedOrderUnsubscribe = onSnapshot(phoneQuery, (snapshot) => {
+              if (snapshot.empty) {
+                  if (result) {
+                      result.innerHTML = '<div class="track-error">❌ ဒီဖုန်းနံပါတ်နဲ့ Order မတွေ့ပါ။</div>';
+                  }
+                  return;
+              }
+
+              const phoneOrders = snapshot.docs
+                  .map(doc => doc.data())
+                  .sort((a, b) => {
+                      const aTime = a.createdAt?.seconds ? Number(a.createdAt.seconds) : 0;
+                      const bTime = b.createdAt?.seconds ? Number(b.createdAt.seconds) : 0;
+                      return bTime - aTime;
+                  });
+
+              window.phoneTrackedOrders = phoneOrders;
+
+              result.innerHTML = phoneOrders.map((item, index) => {
+                  const status = normalizeStatus(item.status);
+                  const statusMap = {
+                      Pending:   { cls: 'pending', icon: '⏳', label: 'Pending' },
+                      Transfer:  { cls: 'transfer', icon: '🚚', label: 'Transfer' },
+                      Completed: { cls: 'completed', icon: '✅', label: 'Completed' },
+                      Cancelled: { cls: 'cancelled', icon: '❌', label: 'Cancelled' }
+                  };
+                  const s = statusMap[status];
+
+                  return `
+                    <div class="track-card" style="margin-top:10px;">
+                      <div class="track-head">
+                        <div>
+                          <div style="color:#94a3b8;font-size:10px;">ORDER ID</div>
+                          <div class="track-id">${escapeTrackText(item.id || 'N/A')}</div>
+                        </div>
+                        <span class="track-status ${s.cls}">${s.icon} ${s.label}</span>
+                      </div>
+                      <div style="font-size:12px;color:#9ca3af;">
+                        📅 ${escapeTrackText(item.date || '-')}
+                        &nbsp; | &nbsp;
+                        💰 ${escapeTrackText(item.price || '0 ကျပ်')}
+                      </div>
+                      <button type="button" class="btn btn-telegram"
+                              onclick="showPhoneTrackedDetail(${index})"
+                              style="margin-top:10px;">
+                        📋 အသေးစိတ်ကြည့်မည်
+                      </button>
+                    </div>
+                  `;
+              }).join('');
+          }, (error) => {
+              console.error("Phone order search error:", error);
+              if (result) {
+                  result.innerHTML = '<div class="track-error">⚠️ Order ရှာရာတွင် Firebase ချိတ်ဆက်မှု အမှားရှိနေပါသည်။</div>';
+              }
+          });
+      };
+
+
+      function formatOrderTime(value) {
+          if (!value) return "မသတ်မှတ်ရသေးပါ";
+          const date = value?.seconds
+              ? new Date(Number(value.seconds) * 1000)
+              : new Date(value);
+          if (Number.isNaN(date.getTime())) return "မသတ်မှတ်ရသေးပါ";
+          return date.toLocaleString("en-GB", {
+              year: "numeric", month: "2-digit", day: "2-digit",
+              hour: "2-digit", minute: "2-digit"
+          });
+      }
+
+      // Make this available to the classic script's showDetail() too.
+      window.formatOrderTime = formatOrderTime;
+
+      window.showPhoneTrackedDetail = function(index) {
+          const orders = window.phoneTrackedOrders || [];
+          const item = orders[index];
+          if (!item) return;
+
+          const modalDetails = document.getElementById('modalDetails');
+          if (!modalDetails) return;
+
+          modalDetails.innerHTML = `
+              <div class="detail-row"><span class="detail-label">လုပ်ငန်းစဉ် ID:</span><span class="detail-value" style="color:#60a5fa;">${escapeTrackText(item.id || 'N/A')}</span></div>
+              <div class="detail-row"><span class="detail-label">မှာယူသည့် ရက်စွဲ:</span><span class="detail-value">${escapeTrackText(item.date || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">🕐 Order တင်ချိန်:</span><span class="detail-value">${escapeTrackText(formatOrderTime(item.createdAt))}</span></div>
+              <div class="detail-row"><span class="detail-label">📦 Customer ဆီက ပစ္စည်းကောက်ယူချိန်:</span><span class="detail-value">${escapeTrackText(formatOrderTime(item.collectedAt))}</span></div>
+              <div class="detail-row"><span class="detail-label">🚚 လက်ခံသူဆီ ပစ္စည်းပို့ပြီးချိန်:</span><span class="detail-value">${escapeTrackText(formatOrderTime(item.deliveredAt))}</span></div>
+              <div class="detail-row"><span class="detail-label">✅ ရောက်ပြီးချိန်:</span><span class="detail-value">${escapeTrackText(formatOrderTime(item.completedAt))}</span></div>
+              <div class="detail-row"><span class="detail-label">Status:</span><span class="detail-value">${escapeTrackText(normalizeStatus(item.status))}</span></div>
+              <div class="detail-row"><span class="detail-label">🚚 Delivery Man:</span><span class="detail-value">${escapeTrackText(item.deliveryManName || 'မသတ်မှတ်ရသေးပါ')}</span></div>
+              <div class="detail-row"><span class="detail-label">📞 Delivery Man ဖုန်း:</span><span class="detail-value">${item.deliveryManPhone ? `<a href="tel:${escapeTrackText(item.deliveryManPhone)}" style="color:#93c5fd;text-decoration:none;">${escapeTrackText(item.deliveryManPhone)}</a>` : 'မသတ်မှတ်ရသေးပါ'}</span></div>
+              <div class="detail-row"><span class="detail-label">ပေးပို့သူ:</span><span class="detail-value">${escapeTrackText(item.senderName || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">ပေးပို့သူ ဖုန်း:</span><span class="detail-value">${escapeTrackText(item.senderPhone || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">လက်ခံသူ:</span><span class="detail-value">${escapeTrackText(item.receiverName || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">Pickup:</span><span class="detail-value">${escapeTrackText(item.pickup || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">Delivery:</span><span class="detail-value">${escapeTrackText(item.dropoff || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">ပစ္စည်း:</span><span class="detail-value">${escapeTrackText(item.itemType || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">အလေးချိန်:</span><span class="detail-value">${escapeTrackText(item.weight || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">ငွေချေစနစ်:</span><span class="detail-value">${escapeTrackText(item.paymentType || '-')}</span></div>
+              ${isCODPayment(item.paymentType) ? `<div class="detail-row"><span class="detail-label">💰 COD ပစ္စည်းတန်ဖိုး:</span><span class="detail-value" style="color:#34d399;">${escapeTrackText(item.codAmount != null ? Number(item.codAmount).toLocaleString() + ' ကျပ်' : 'မသတ်မှတ်ရသေးပါ')}</span></div>` : ''}
+              <div class="detail-row"><span class="detail-label">မှတ်ချက်:</span><span class="detail-value">${escapeTrackText(item.note || 'မရှိပါ')}</span></div>
+              <div class="detail-row" style="border-bottom:none;"><span class="detail-label">ကျသင့်ငွေ:</span><span class="detail-value" style="color:#34d399;">${escapeTrackText(item.price || '0 ကျပ်')}</span></div>
+          `;
+
+          document.getElementById('detailModal').style.display = 'flex';
+      };
+
+      window.showTrackedDetail = function() {
+          const item = window.trackedOrder;
+          if (!item) return;
+
+          const history = window.getOrdersCache ? window.getOrdersCache() : [];
+          const index = history.findIndex(order =>
+              String(order.id || '').toUpperCase() === String(item.id || '').toUpperCase()
+          );
+
+          if (index >= 0 && typeof window.showDetail === 'function') {
+              window.showDetail(index);
+              return;
+          }
+
+          const modalDetails = document.getElementById('modalDetails');
+          if (!modalDetails) return;
+
+          modalDetails.innerHTML = `
+              <div class="detail-row"><span class="detail-label">လုပ်ငန်းစဉ် ID:</span><span class="detail-value" style="color:#60a5fa;">${escapeTrackText(item.id || 'N/A')}</span></div>
+              <div class="detail-row"><span class="detail-label">မှာယူသည့် ရက်စွဲ:</span><span class="detail-value">${escapeTrackText(item.date || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">🕐 Order တင်ချိန်:</span><span class="detail-value">${escapeTrackText(formatOrderTime(item.createdAt))}</span></div>
+              <div class="detail-row"><span class="detail-label">📦 Customer ဆီက ပစ္စည်းကောက်ယူချိန်:</span><span class="detail-value">${escapeTrackText(formatOrderTime(item.collectedAt))}</span></div>
+              <div class="detail-row"><span class="detail-label">🚚 လက်ခံသူဆီ ပစ္စည်းပို့ပြီးချိန်:</span><span class="detail-value">${escapeTrackText(formatOrderTime(item.deliveredAt))}</span></div>
+              <div class="detail-row"><span class="detail-label">✅ ရောက်ပြီးချိန်:</span><span class="detail-value">${escapeTrackText(formatOrderTime(item.completedAt))}</span></div>
+              <div class="detail-row"><span class="detail-label">Status:</span><span class="detail-value">${escapeTrackText(normalizeStatus(item.status))}</span></div>
+              <div class="detail-row"><span class="detail-label">🚚 Delivery Man:</span><span class="detail-value">${escapeTrackText(item.deliveryManName || 'မသတ်မှတ်ရသေးပါ')}</span></div>
+              <div class="detail-row"><span class="detail-label">📞 Delivery Man ဖုန်း:</span><span class="detail-value">${item.deliveryManPhone ? `<a href="tel:${escapeTrackText(item.deliveryManPhone)}" style="color:#93c5fd;text-decoration:none;">${escapeTrackText(item.deliveryManPhone)}</a>` : 'မသတ်မှတ်ရသေးပါ'}</span></div>
+              <div class="detail-row"><span class="detail-label">ပေးပို့သူ:</span><span class="detail-value">${escapeTrackText(item.senderName || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">လက်ခံသူ:</span><span class="detail-value">${escapeTrackText(item.receiverName || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">Pickup:</span><span class="detail-value">${escapeTrackText(item.pickup || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">Delivery:</span><span class="detail-value">${escapeTrackText(item.dropoff || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">ပစ္စည်း:</span><span class="detail-value">${escapeTrackText(item.itemType || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">အလေးချိန်:</span><span class="detail-value">${escapeTrackText(item.weight || '-')}</span></div>
+              <div class="detail-row"><span class="detail-label">ငွေချေစနစ်:</span><span class="detail-value">${escapeTrackText(item.paymentType || '-')}</span></div>
+              ${isCODPayment(item.paymentType) ? `<div class="detail-row"><span class="detail-label">💰 COD ပစ္စည်းတန်ဖိုး:</span><span class="detail-value" style="color:#34d399;">${escapeTrackText(item.codAmount != null ? Number(item.codAmount).toLocaleString() + ' ကျပ်' : 'မသတ်မှတ်ရသေးပါ')}</span></div>` : ''}
+              <div class="detail-row"><span class="detail-label">မှတ်ချက်:</span><span class="detail-value">${escapeTrackText(item.note || 'မရှိပါ')}</span></div>
+              <div class="detail-row" style="border-bottom:none;"><span class="detail-label">ကျသင့်ငွေ:</span><span class="detail-value" style="color:#34d399;">${escapeTrackText(item.price || '0 ကျပ်')}</span></div>
+          `;
+
+          document.getElementById('detailModal').style.display = 'flex';
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+          const input = document.getElementById('trackOrderInput');
+          if (input) {
+              input.addEventListener('keydown', (event) => {
+                  if (event.key === 'Enter') {
+                      event.preventDefault();
+                      window.trackOrder();
+                  }
+              });
+          }
+
+          const phoneInput = document.getElementById('trackPhoneInput');
+          if (phoneInput) {
+              phoneInput.addEventListener('keydown', (event) => {
+                  if (event.key === 'Enter') {
+                      event.preventDefault();
+                      window.trackByPhone();
+                  }
+              });
+          }
+      });
+
+    </script>
+
+    <!-- Main Logic Script -->
+    <script>
+        const BOT_TOKEN = "8006727591:AAEV_dUqPOWcxYwDdYY2rH79dOe417J27wo";
+        const CHAT_ID = "5835686022";
+
+        function calculatePrice() {
+            const weightInput = document.getElementById('weight');
+            let weight = parseInt(weightInput.value) || 1;
+            if (weight < 1) weight = 1;
+
+            // Use the latest pricing received from Admin/Firebase.
+            const baseFee = Number(window.deliveryPricing?.baseFee ?? 5000);
+            const weightRate = Number(window.deliveryPricing?.weightRate ?? 1000);
+
+            let price = baseFee;
+            if (weight > 1) {
+                price += (weight - 1) * weightRate;
+            }
+
+            const totalPrice = document.getElementById('total-price');
+            if (totalPrice) {
+                totalPrice.innerText = price.toLocaleString() + ' ကျပ်';
+            }
+
+            return price;
+        }
+
+        // Make it available to the Firebase module so pricing updates can refresh the UI.
+        window.calculatePrice = calculatePrice;
+
+        function generateOrderID() {
+            const date = new Date();
+            const timeStamp = date.getTime().toString().slice(-4);
+            const random = Math.floor(10 + Math.random() * 90);
+            return `HS-${timeStamp}${random}`;
+        }
+
+        function isCODPayment(value) {
+            return String(value || '').toUpperCase().includes('COD');
+        }
+
+        function updateCodAmountVisibility() {
+            const payment = document.getElementById('paymentType')?.value || '';
+            const group = document.getElementById('codAmountGroup');
+            const input = document.getElementById('codAmount');
+            const show = isCODPayment(payment);
+            if (group) group.style.display = show ? 'block' : 'none';
+            if (input) {
+                input.required = show;
+                if (!show) input.value = '';
+            }
+        }
+
+        document.getElementById('paymentType')?.addEventListener('change', updateCodAmountVisibility);
+        document.addEventListener('DOMContentLoaded', updateCodAmountVisibility);
+
+        async function sendOrder(platform) {
+            const senderName = document.getElementById('senderName').value.trim();
+            const senderPhone = document.getElementById('senderPhone').value.trim();
+            const pickup = document.getElementById('pickup').value.trim();
+            const receiverName = document.getElementById('receiverName').value.trim();
+            const receiverPhone = document.getElementById('receiverPhone').value.trim();
+            const dropoff = document.getElementById('dropoff').value.trim();
+            const weight = document.getElementById('weight').value;
+            const itemType = document.getElementById('itemType').value;
+            const paymentType = document.getElementById('paymentType').value;
+            const codAmountRaw = document.getElementById('codAmount')?.value.trim() || '';
+            const codAmount = isCODPayment(paymentType) ? Number(codAmountRaw) : null;
+            const note = document.getElementById('note').value.trim() || 'မရှိပါ';
+            const price = calculatePrice();
+
+            // ၁။ အချက်အလက် ကွက်လပ် စစ်ဆေးခြင်း
+            if (!senderName || !senderPhone || !pickup || !receiverName || !receiverPhone || !dropoff) {
+                alert('ကျေးဇူးပြု၍ လိုအပ်သောအချက်အလက်များ အပြည့်အဝ ဖြည့်သွင်းပေးပါ။');
+                return;
+            }
+            if (isCODPayment(paymentType) && (!Number.isFinite(codAmount) || codAmount < 0)) {
+                alert('COD ပစ္စည်းတန်ဖိုးကို မှန်ကန်စွာ ထည့်ပေးပါ။');
+                document.getElementById('codAmount')?.focus();
+                return;
+            }
+
+            // ၂။ ဖုန်းနံပါတ် ပုံစံ မှန်/မမှန် စစ်ဆေးခြင်း (09 သို့မဟုတ် +959 ဖြင့် စပြီး ဂဏန်း ၉ လုံးမှ ၁၁ လုံးအထိ)
+            const phoneRegex = /^(09|\+?959)[0-9]{7,9}$/;
+            const cleanSenderPhone = senderPhone.replace(/[\s-]/g, '');
+            const cleanReceiverPhone = receiverPhone.replace(/[\s-]/g, '');
+
+            if (!phoneRegex.test(cleanSenderPhone)) {
+                alert('ပေးပို့သူ၏ ဖုန်းနံပါတ် မှန်ကန်မှု မရှိပါ။ (ဥပမာ - 09123456789 သို့မဟုတ် 09xxxxxxxxx ဂဏန်းအပြည့် ရိုက်ပေးပါ)');
+                document.getElementById('senderPhone').focus();
+                return;
+            }
+
+            if (!phoneRegex.test(cleanReceiverPhone)) {
+                alert('လက်ခံသူ၏ ဖုန်းနံပါတ် မှန်ကန်မှု မရှိပါ။ (ဥပမာ - 09987654321 သို့မဟုတ် 09xxxxxxxxx ဂဏန်းအပြည့် ရိုက်ပေးပါ)');
+                document.getElementById('receiverPhone').focus();
+                return;
+            }
+
+            const orderId = generateOrderID();
+            const currentDate = new Date().toLocaleString('my-MM', { dateStyle: 'short', timeStyle: 'short' });
+
+            const newOrder = {
+                id: orderId,
+                customerId: window.haystackCustomerId,
+                date: currentDate,
+                senderName,
+                senderPhone: cleanSenderPhone,
+                pickup,
+                receiverName,
+                receiverPhone: cleanReceiverPhone,
+                dropoff,
+                weight: weight + ' kg',
+                itemType,
+                paymentType,
+                codAmount: isCODPayment(paymentType) ? codAmount : null,
+                note,
+                price: price.toLocaleString() + ' ကျပ်',
+                platform: platform.toUpperCase(),
+                status: 'Pending'
+            };
+
+            // Firebase သို့ တိုက်ရိုက် သိမ်းဆည်းခြင်း
+            if (window.saveOrderToFirebase) {
+                window.saveOrderToFirebase(newOrder);
+            }
+
+            if (platform === 'telegram') {
+                const tgBtn = document.getElementById('tgBtn');
+                const originalText = tgBtn.innerHTML;
+                tgBtn.innerHTML = "<span>⏳ ပို့ဆောင်နေပါသည်...</span>";
+                tgBtn.disabled = true;
+
+                const textMessage = `📦 *Haystack YBS Delivery Order*\n` +
+                    `🆔 *Order ID:* ${newOrder.id}\n` +
+                    `📅 *နေ့စွဲ:* ${newOrder.date}\n` +
+                    `------------------------------------\n` +
+                    `📤 *ပေးပို့သူ:* ${senderName} (${cleanSenderPhone})\n` +
+                    `📍 *Pickup Address:* ${pickup}\n` +
+                    `------------------------------------\n` +
+                    `📥 *လက်ခံသူ:* ${receiverName} (${cleanReceiverPhone})\n` +
+                    `📍 *Delivery Address:* ${dropoff}\n` +
+                    `------------------------------------\n` +
+                    `🏷️ *ပစ္စည်းအမျိုးအစား:* ${itemType} (${weight} kg)\n` +
+                    `💳 *ငွေချေစနစ်:* ${paymentType}\n` +
+                    (isCODPayment(paymentType) ? `💰 *COD ပစ္စည်းတန်ဖိုး:* ${codAmount.toLocaleString()} ကျပ်\n` : '') +
+                    `📝 *မှတ်ချက်:* ${note}\n` +
+                    `💰 *ကျသင့်ငွေ:* ${price.toLocaleString()} ကျပ်`;
+
+                try {
+                    const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            chat_id: CHAT_ID,
+                            text: textMessage,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.ok) {
+                        alert(`Order အောင်မြင်စွာ တင်ပြီးပါပြီ! (Order ID: ${orderId})`);
+                        document.getElementById('orderForm').reset();
+                        calculatePrice();
+                    } else {
+                        alert('Telegram Bot သို့ မက်ဆေ့ချ် ပို့ရာတွင် အမှားအယွင်း ရှိနေပါသည်။');
+                    }
+                } catch (error) {
+                    alert('ကွန်ရက် ချိတ်ဆက်မှု အဆင်မပြေပါ။ ပြန်လည် ကြိုးစားကြည့်ပါ။');
+                } finally {
+                    tgBtn.innerHTML = originalText;
+                    tgBtn.disabled = false;
+                }
+
+            } else if (platform === 'viber') {
+                const viberText = `📦 *Haystack YBS Delivery Order*%0A` +
+                    `🆔 *Order ID:* ${newOrder.id}%0A` +
+                    `📅 *နေ့စွဲ:* ${newOrder.date}%0A` +
+                    `------------------------------------%0A` +
+                    `📤 *ပေးပို့သူ:* ${senderName} (${cleanSenderPhone})%0A` +
+                    `📍 *Pickup Address:* ${pickup}%0A` +
+                    `------------------------------------%0A` +
+                    `📥 *လက်ခံသူ:* ${receiverName} (${cleanReceiverPhone})%0A` +
+                    `📍 *Delivery Address:* ${dropoff}%0A` +
+                    `------------------------------------%0A` +
+                    `🏷️ *ပစ္စည်းအမျိုးအစား:* ${itemType} (${weight} kg)%0A` +
+                    `💳 *ငွေချေစနစ်:* ${paymentType}%0A` +
+                    `📝 *မှတ်ချက်:* ${note}%0A` +
+                    `💰 *ကျသင့်ငွေ:* ${price.toLocaleString()} ကျပ်`;
+
+                // Mobile & Desktop နှစ်မျိုးစလုံး ပွင့်စေရန် အဆင်ပြေဆုံး Viber URL ပုံစံ
+                window.location.href = `viber://chat?number=%2B959890577789&text=${viberText}`;
+            }
+        }
+
+        function showDetail(index) {
+            const history = window.getOrdersCache ? window.getOrdersCache() : [];
+            const item = history[index];
+
+            if (!item) return;
+
+            const modalDetails = document.getElementById('modalDetails');
+            modalDetails.innerHTML = `
+                <div class="detail-row"><span class="detail-label">လုပ်ငန်းစဉ် ID:</span><span class="detail-value" style="color:#60a5fa;">${item.id || 'N/A'}</span></div>
+                <div class="detail-row"><span class="detail-label">မှာယူသည့် ရက်စွဲ:</span><span class="detail-value">${item.date || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">🕐 Order တင်ချိန်:</span><span class="detail-value">${window.formatOrderTime(item.createdAt)}</span></div>
+                <div class="detail-row"><span class="detail-label">📦 Customer ဆီက ပစ္စည်းကောက်ယူချိန်:</span><span class="detail-value">${window.formatOrderTime(item.collectedAt)}</span></div>
+                <div class="detail-row"><span class="detail-label">🚚 လက်ခံသူဆီ ပစ္စည်းပို့ပြီးချိန်:</span><span class="detail-value">${window.formatOrderTime(item.deliveredAt)}</span></div>
+                <div class="detail-row"><span class="detail-label">✅ ရောက်ပြီးချိန်:</span><span class="detail-value">${window.formatOrderTime(item.completedAt)}</span></div>
+                <div class="detail-row"><span class="detail-label">Status အခြေအနေ:</span><span class="detail-value" style="color:#fde047;">${item.status || 'Pending'}</span></div>
+                <div class="detail-row"><span class="detail-label">🚚 Delivery Man:</span><span class="detail-value">${item.deliveryManName || 'မသတ်မှတ်ရသေးပါ'}</span></div>
+                <div class="detail-row"><span class="detail-label">📞 Delivery Man ဖုန်း:</span><span class="detail-value">${item.deliveryManPhone ? `<a href="tel:${item.deliveryManPhone}" style="color:#93c5fd;text-decoration:none;">${item.deliveryManPhone}</a>` : 'မသတ်မှတ်ရသေးပါ'}</span></div>
+                <div class="detail-row"><span class="detail-label">မှာယူသည့် လမ်းကြောင်း:</span><span class="detail-value">${item.platform || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">ပေးပို့သူ အမည်:</span><span class="detail-value">${item.senderName || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">ပေးပို့သူ ဖုန်း:</span><span class="detail-value">${item.senderPhone || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">ပစ္စည်းယူရန် လိပ်စာ:</span><span class="detail-value">${item.pickup || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">လက်ခံသူ အမည်:</span><span class="detail-value">${item.receiverName || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">လက်ခံသူ ဖုန်း:</span><span class="detail-value">${item.receiverPhone || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">ပစ္စည်းပို့ရန် လိပ်စာ:</span><span class="detail-value">${item.dropoff || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">ပစ္စည်း အမျိုးအစား:</span><span class="detail-value">${item.itemType || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">အလေးချိန်:</span><span class="detail-value">${item.weight || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">ငွေချေစနစ်:</span><span class="detail-value">${item.paymentType || '-'}</span></div>
+                ${String(item.paymentType || '').toUpperCase().includes('COD') ? `<div class="detail-row"><span class="detail-label">💰 COD ပစ္စည်းတန်ဖိုး:</span><span class="detail-value" style="color:#34d399;">${item.codAmount != null ? Number(item.codAmount).toLocaleString() + ' ကျပ်' : 'မသတ်မှတ်ရသေးပါ'}</span></div>` : ''}
+                <div class="detail-row"><span class="detail-label">မှတ်ချက်:</span><span class="detail-value">${item.note || 'မရှိပါ'}</span></div>
+                <div class="detail-row" style="border-bottom:none;"><span class="detail-label">ကျသင့်ငွေ:</span><span class="detail-value" style="color:#34d399;">${item.price || '0 ကျပ်'}</span></div>
+            `;
+
+            document.getElementById('detailModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('detailModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
